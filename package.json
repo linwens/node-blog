@@ -1,0 +1,26 @@
+{
+  "name": "node-blog",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon lib/bin/www.js --exec babel-node",
+    "build": "babel lib -d dist",
+    "prod": "set NODE_ENV=production&&node dist/bin/www.js",
+    "test": "mocha --compilers js:babel-register"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3"
+  }
+}
