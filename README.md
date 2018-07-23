@@ -4,6 +4,7 @@
 # 日记
  - 20180720
   -修改bin/www文件为www.js，为了能让babel也打包
+  -gulp-nodemon启动通过exec: 'babel-node',实现nodemon lib/bin/www.js --exec babel-node
 
 # 开发
 
@@ -18,6 +19,9 @@
 	
 	# 本地单元测试
 	npm run test, 单元测试基于mocha
+
+# 开发环境部署
+ gulp:开发过程中，gulp负责热更新；开发完成打包静态资源
 
 # 发布
 
