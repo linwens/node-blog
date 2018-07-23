@@ -27,7 +27,7 @@ var path = require('path');
 var del = require('del');
 
 // var config = require('./conf');
-var files = ['src/views/**/*.{html,ejs}', 'src/public/**/*.js', 'src/public/**/*.css', 'src/public/**/*.{png,jpg,gif,ico}'];
+var files = ['src/views/**/*.{html,ejs}', 'src/public/js/**/*.js', 'src/public/css/**/*.css', 'src/public/img/**/*.{png,jpg,gif,ico}'];
 // 删除文件
 gulp.task('clean', function(cb) {
     return del(['src/public/css/*', 'src/public/js/*', 'src/public/img/*'], cb)

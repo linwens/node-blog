@@ -3,11 +3,24 @@
 
 # 日记
  - 20180720
-  -修改bin/www文件为www.js，为了能让babel也打包
+  - 修改bin/www文件为www.js，为了能让babel也打包
 
-  -gulp-nodemon启动通过exec: 'babel-node',实现nodemon lib/bin/www.js --exec babel-node
+  - gulp-nodemon启动通过exec: 'babel-node',实现nodemon lib/bin/www.js --exec babel-node
 
-  -gulp-imagemin压缩有问题，初步怀疑是gifsicle包的问题，
+  - gulp-imagemin压缩有问题，初步怀疑是gifsicle包的问题，
+
+# 功能
+ * mock数据
+ * 支持html直接渲染，也支持ejs
+ * session控制请求允许的域名
+ * log4js日志打印功能
+ * mocha单元测试
+ * 基于babel 让express支持es6语法 ok
+ * 基于nodemon 实现热启动 ok
+ * gulp + browser-sync 实现静态资源打包及前端代码热更新 (未走通图片压缩)
+ * 对接七牛存储
+ * 基于mongoose 操作数据库mongodb
+ * 对接微信api
 
 # 开发
 
@@ -27,7 +40,7 @@
  所有静态资源放在src/views/static/下，打包后将src/public/内的静态资源放入服务器。
 
 # 开发环境部署
- gulp:开发过程中，gulp负责热更新；开发完成打包静态资源
+ gulp:开发过程中，gulp负责热更新；实时打包静态资源
 
 # 发布
 
