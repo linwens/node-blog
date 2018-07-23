@@ -27,7 +27,7 @@ var path = require('path');
 var del = require('del');
 
 // var config = require('./conf');
-var files = ['src/**/*.{html,ejs}', 'src/public/js/**/*.js', 'src/public/css/**/*.css', 'src/public/img/**/*.{png,jpg,gif,ico}'];
+var files = ['src/views/**/*.{html,ejs}', 'src/public/**/*.js', 'src/public/**/*.css', 'src/public/**/*.{png,jpg,gif,ico}'];
 // 删除文件
 gulp.task('clean', function(cb) {
     return del(['src/public/css/*', 'src/public/js/*', 'src/public/img/*'], cb)
@@ -35,7 +35,8 @@ gulp.task('clean', function(cb) {
 
 //图片压缩
 gulp.task('imagemin', function(){
-    return gulp.src('src/view/static/images/**/*.{png,jpg,gif,ico}')
+  console.log('进入 imagemin');
+    return gulp.src('src/views/static/img/**/*.{png,jpg,gif,ico}')
           .pipe(changed('src/public/img'))
           .pipe(cache(imagemin([
               imagemin.gifsicle({interlaced: true}),
@@ -43,17 +44,17 @@ gulp.task('imagemin', function(){
               imagemin.optipng({optimizationLevel: 5}),
               imagemin.svgo({plugins: [{removeViewBox: true}]})
           ],{verbose:true})))
-          .pipe(gulp.dest('src/public/img'))
+          .pipe(gulp.dest('src/public/img/'))
 });
 
 //babel转换es5
 gulp.task('babel', function (){
-    return gulp.src('src/view/static/js/**/*.js')
+    return gulp.src('src/views/static/js/**/*.js')
         .pipe(changed('src/public/js'))//对比目标文件目录，只有当前修改了的文件才会进行编译，避免改一个文件编译所有文件
         .pipe(babel({
             presets: ['env']
         }))
-        .pipe(gulp.dest('src/public/js'))
+        .pipe(gulp.dest('src/public/js/'))
 });
 //less转换css
 gulp.task('less', function (){
@@ -68,7 +69,7 @@ gulp.task('less', function (){
     	    remove:true //是否去掉不必要的前缀 默认：true
     	}))
       .pipe(cleanCSS())
-    	.pipe(gulp.dest('src/public/css'));
+    	.pipe(gulp.dest('src/public/css/'));
 });
 //发布线上,清除代码并美化压缩js，css文件
 gulp.task('build', function(){//gulp正在监听，这时候打包会报错
@@ -97,7 +98,7 @@ gulp.task('browser-sync', ['nodemon'], function() {
     bs.init(files,{
         proxy: process.env.PORT?"http://localhost:"+process.env.PORT:"http://localhost:3000",
         browser: "chrome",
-        port: 8688
+        port: 8988
     });
 });
 //监听静态资源变化，热更新
