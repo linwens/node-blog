@@ -1,5 +1,6 @@
 # 参考链接
  https://github.com/babel/example-node-server
+ https://www.npmjs.com/package/morgan
 
 # 日记
  - 20180720
@@ -10,16 +11,15 @@
   - gulp-imagemin压缩有问题，初步怀疑是gifsicle包的问题，
 
 # 功能
- * mock数据
- * 支持html直接渲染，也支持ejs
+ * 支持html直接渲染，也支持ejs ok
  * session控制请求允许的域名
- * log4js日志打印功能
+ * morgan日志打印功能 ok
  * mocha单元测试
  * 基于babel 让express支持es6语法 ok
  * 基于nodemon 实现热启动 ok
  * gulp + browser-sync 实现静态资源打包及前端代码热更新 (未走通图片压缩)
  * 对接七牛存储
- * 基于mongoose 操作数据库mongodb
+ * 基于mongoose 操作数据库mongodb ok
  * 对接微信api
 
 # 开发

@@ -26,7 +26,9 @@ var nodemon = require('gulp-nodemon');
 var path = require('path');
 var del = require('del');
 
-// var config = require('./conf');
+var config = require('./dist/config');
+console.log(config);
+console.log(config);
 var files = ['src/views/**/*.{html,ejs}', 'src/public/js/**/*.js', 'src/public/css/**/*.css', 'src/public/img/**/*.{png,jpg,gif,ico}'];
 // 删除文件
 gulp.task('clean', function(cb) {
@@ -35,7 +37,6 @@ gulp.task('clean', function(cb) {
 
 //图片压缩
 gulp.task('imagemin', function(){
-  console.log('进入 imagemin');
     return gulp.src('src/views/static/img/**/*.{png,jpg,gif,ico}')
           .pipe(changed('src/public/img'))
           .pipe(cache(imagemin([
@@ -46,7 +47,6 @@ gulp.task('imagemin', function(){
           ],{verbose:true})))
           .pipe(gulp.dest('src/public/img/'))
 });
-
 //babel转换es5
 gulp.task('babel', function (){
     return gulp.src('src/views/static/js/**/*.js')
@@ -96,7 +96,7 @@ gulp.task('nodemon',function(cb){
 
 gulp.task('browser-sync', ['nodemon'], function() {
     bs.init(files,{
-        proxy: process.env.PORT?"http://localhost:"+process.env.PORT:"http://localhost:3000",
+        proxy: config.default.PORT?"http://localhost:"+config.default.PORT:"http://localhost:3000",
         browser: "chrome",
         port: 8988
     });
@@ -106,5 +106,6 @@ gulp.task('default',['browser-sync'], function(){
 	gulp.watch('src/views/static/css/**/*.less',['less']);
 	gulp.watch('src/views/static/js/**/*.js',['babel']);
   gulp.watch('src/views/static/img/**/*.{png,jpg,gif,ico}',['imagemin']);
+  console.log('开始监听');
 	gulp.watch(files).on("change",bs.reload);
 });
