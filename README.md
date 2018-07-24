@@ -17,7 +17,7 @@
  * mocha单元测试
  * 基于babel 让express支持es6语法 ok
  * 基于nodemon 实现热启动 ok
- * gulp + browser-sync 实现静态资源打包及前端代码热更新 (未走通图片压缩)
+ * gulp + browser-sync 实现静态资源打包及前端代码热更新 （包经常安装失败，导致不能用）
  * 对接七牛存储
  * 基于mongoose 操作数据库mongodb ok
  * 对接微信api
