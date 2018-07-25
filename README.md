@@ -11,7 +11,9 @@
 
   - gulp-nodemon启动通过exec: 'babel-node',实现nodemon lib/bin/www.js --exec babel-node
 
-  - gulp-imagemin压缩有问题，初步怀疑是gifsicle包的问题，
+  - gulp-imagemin压缩有问题，npm装包有问题，决定转yarn
+
+  - 前端自动化思路：每个页面特有的js和css直接写在页面上，公共的/外部插件的js和css通过require管理；然后发布时用gulp把js和css打包成总的js和css，这样就只有两个请求。(ps，想了想还不如直接用vue写单页拖拖到工程了)
 
 # 功能
  * 支持html直接渲染，也支持ejs ok
