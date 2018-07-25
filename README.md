@@ -1,7 +1,9 @@
 # 参考链接
- https://github.com/babel/example-node-server
- https://www.npmjs.com/package/morgan
-
+ https://github.com/babel/example-node-server  babel依赖
+ https://www.npmjs.com/package/morgan  morgan日志相关API
+ https://www.npmjs.com/package/wechat  WeChat相关API
+ https://developer.qiniu.com/kodo/sdk/1289/nodejs  七牛相关API
+ http://mongoosejs.com/docs/guide.html  mongoose API
 # 日记
  - 20180720
   - 修改bin/www文件为www.js，为了能让babel也打包
@@ -12,15 +14,16 @@
 
 # 功能
  * 支持html直接渲染，也支持ejs ok
- * session控制请求允许的域名
  * morgan日志打印功能 ok
  * mocha单元测试
  * 基于babel 让express支持es6语法 ok
  * 基于nodemon 实现热启动 ok
- * gulp + browser-sync 实现静态资源打包及前端代码热更新 （包经常安装失败，导致不能用）
- * 对接七牛存储
+ * gulp + browser-sync 实现静态资源打包及前端代码热更新 （包经常安装失败，导致imagemin不能用）
+ * 对接七牛存储 ok
+   直接根据七牛api写一遍即可，中间使用了multer把表单上传的数据转buffer
  * 基于mongoose 操作数据库mongodb ok
- * 对接微信api
+ * 对接微信api ok
+   实现很简单，主要工作都在微信公众号配置完成，node服务根据配置信息，实现与微信的对接。功能添加可使用wechat-api、wechat等现成的包。
 
 # 开发
 
