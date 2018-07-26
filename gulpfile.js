@@ -14,6 +14,7 @@
 
 var gulp = require('gulp');
 var babel = require('gulp-babel');
+var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
 var cache = require('gulp-cache');
@@ -54,6 +55,7 @@ gulp.task('babel', function (){
         .pipe(babel({
             presets: ['env']
         }))
+        .pipe(uglify())
         .pipe(gulp.dest('src/public/js/'))
 });
 //less转换css
@@ -75,7 +77,12 @@ gulp.task('less', function (){
 gulp.task('build', function(){//gulp正在监听，这时候打包会报错
 	runSequence('clean', ['babel', 'less', 'imagemin'])
 });
-
+//plugins里的内容只是复制份到文件夹
+gulp.task('plugins', function(){//gulp正在监听，这时候打包会报错
+  return gulp.src('src/views/static/plugins/**/*.*')
+      .pipe(changed('src/public/plugins'))
+      .pipe(gulp.dest('src/public/plugins/'));
+});
 //启动node服务
 gulp.task('nodemon',function(cb){
     console.log(started);
@@ -104,8 +111,8 @@ gulp.task('browser-sync', ['nodemon'], function() {
 //监听静态资源变化，热更新
 gulp.task('default',['browser-sync'], function(){
 	gulp.watch('src/views/static/css/**/*.less',['less']);
+  gulp.watch('src/views/static/plugins/**/*.*',['plugins']);
 	gulp.watch('src/views/static/js/**/*.js',['babel']);
   gulp.watch('src/views/static/img/**/*.{png,jpg,gif,ico}',['imagemin']);
-  console.log('开始监听');
 	gulp.watch(files).on("change",bs.reload);
 });
