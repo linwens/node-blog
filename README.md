@@ -22,13 +22,15 @@
    基于supertest和mocha进行了服务器及接口的测试
  * 基于babel 让express支持es6语法 ok
  * 基于nodemon 实现热启动 ok
- * gulp + browser-sync 实现静态资源打包及前端代码热更新 （包经常安装失败，导致imagemin不能用）
+ * gulp + browser-sync 实现静态资源打包及前端代码热更新
+   实时编译js，less文件，并刷新页面，图片压缩功能不稳定，由于gulp-imagemin包安装不完整(被墙...)
  * 对接七牛存储 ok
    直接根据七牛api写一遍即可，中间使用了multer把表单上传的数据转buffer
  * 基于mongoose 操作数据库mongodb ok
  * 对接微信api ok
    实现很简单，主要工作都在微信公众号配置完成，node服务根据配置信息，实现与微信的对接。功能添加可使用wechat-api、wechat等现成的包。
- * 前端代码开发部署 (静态资源优化)
+ * 前端代码开发部署
+   src/views/static/plugins存放外部插件，有改动的话直接复制到src/public/plugins;其他资源走热更新实时编译。
 
 # 开发
 
