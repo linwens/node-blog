@@ -1,10 +1,10 @@
 # 参考链接
- https://github.com/babel/example-node-server  babel依赖
- https://www.npmjs.com/package/morgan  morgan日志相关API
- https://www.npmjs.com/package/wechat  WeChat相关API
- https://developer.qiniu.com/kodo/sdk/1289/nodejs  七牛相关API
- http://mongoosejs.com/docs/guide.html  mongoose API
- https://www.npmjs.com/package/supertest  supertest单元测试 API
+ https://github.com/babel/example-node-server  babel依赖  
+ https://www.npmjs.com/package/morgan  morgan日志相关API  
+ https://www.npmjs.com/package/wechat  WeChat相关API  
+ https://developer.qiniu.com/kodo/sdk/1289/nodejs  七牛相关API  
+ http://mongoosejs.com/docs/guide.html  mongoose API  
+ https://www.npmjs.com/package/supertest  supertest单元测试 API  
 # 日记
  - 20180720
   - 修改bin/www文件为www.js，为了能让babel也打包
@@ -17,12 +17,12 @@
 
 # 功能
  * 使用html直接渲染，ejs文件存放公共模块插入页面，类似于freeMark  
- `
+ ```
 	app.set('views', path.join(newPath, 'views'));
 	app.engine('.html', require('ejs').renderFile);
 	app.set('view engine', 'html');
 
- `
+ ```
  * morgan日志打印
  `
  	var errorLogStream = fs.createWriteStream(path.join(__dirname, 'error.log'), {flags: 'a'});
