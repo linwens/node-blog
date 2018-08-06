@@ -1,6 +1,6 @@
 # 说明
   这是一个个人博客系统。服务端使用node，数据库使用mongodb，前端采用多页面的展现形式基于jquery和bootstrap。  
-  本项目以学习自用为主，有幸能被大牛看到，希望能得到些许指点，先在这里谢过了...
+  本项目以学习自用为主，欢迎有兴趣的小伙伴吐槽或提issue，让我可以继续进步。如有幸能被大牛看到，希望能得到些许指点，先在这里谢过啦...
 # 功能
  * 使用html直接渲染，ejs文件存放公共模块插入页面，类似于freeMark  
  ```
@@ -68,7 +68,7 @@
 # 开发
 
 	# 克隆项目
-	//////////////////////////////////////
+	git clone git@github.com:linwens/node-blog.git
 
 	# 安装依赖
 	npm install
@@ -92,6 +92,7 @@
 
 	# 生成环境启动
 	npm run prod
+
 # 参考链接
  https://github.com/babel/example-node-server  babel依赖  
  https://www.npmjs.com/package/morgan  morgan日志相关API  
