@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "gulp",
     "build": "babel lib -d dist",
-    "prod": "set NODE_ENV=production&&node dist/bin/www.js",
+    "prod": "export NODE_ENV=production&&node dist/bin/www.js",
     "test": "mocha --compilers js:babel-register"
   },
   "dependencies": {
