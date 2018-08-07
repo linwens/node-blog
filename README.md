@@ -86,12 +86,18 @@
  gulp:开发过程中，gulp负责热更新；实时打包静态资源
 
 # 发布
-
+	# 云服务器初始化
+	 1、先在自己服务器内新建文件夹，如myBlog，一般在home文件夹下。 
+	 2、然后将本地package.json文件夹拖入myBlog
+	 3、输入命令：npm install --production，只安装dependencies下的依赖
 	# 项目打包
-	npm run build, 打包是通过babel将lib文件夹生成dist文件夹，然后直接将dist文件夹拖到自己的服务器。
+	npm run build, 打包是通过babel将lib文件夹生成dist文件夹，然后直接将dist文件夹拖到自己的服务器。 
+	
+	# 拖入文件
+	 将dist文件和src文件拖入myBlog跟package.json同级
 
 	# 生成环境启动
-	npm run prod
+	npm run prod 或者 pm2 start npm -n 程序名称 -- run prod
 
 # 参考链接
  https://github.com/babel/example-node-server  babel依赖  

@@ -19,7 +19,7 @@ var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
 var cache = require('gulp-cache');
 var changed = require('gulp-changed');
-var imagemin = require('gulp-imagemin');
+//var imagemin = require('gulp-imagemin');
 var cleanCSS = require('gulp-clean-css');
 var runSequence = require('run-sequence');
 var bs = require('browser-sync').create();
@@ -27,9 +27,7 @@ var nodemon = require('gulp-nodemon');
 var path = require('path');
 var del = require('del');
 
-var config = require('./dist/config');
-console.log(config);
-console.log(config);
+var config = require('./lib/config/conf.dev');
 var files = ['src/views/**/*.{html,ejs}', 'src/public/js/**/*.js', 'src/public/css/**/*.css', 'src/public/img/**/*.{png,jpg,gif,ico}'];
 // 删除文件
 gulp.task('clean', function(cb) {
@@ -37,17 +35,17 @@ gulp.task('clean', function(cb) {
 });
 
 //图片压缩
-gulp.task('imagemin', function(){
-    return gulp.src('src/views/static/img/**/*.{png,jpg,gif,ico}')
-          .pipe(changed('src/public/img'))
-          .pipe(cache(imagemin([
-              imagemin.gifsicle({interlaced: true}),
-              imagemin.jpegtran({progressive: true}),
-              imagemin.optipng({optimizationLevel: 5}),
-              imagemin.svgo({plugins: [{removeViewBox: true}]})
-          ],{verbose:true})))
-          .pipe(gulp.dest('src/public/img/'))
-});
+// gulp.task('imagemin', function(){
+//     return gulp.src('src/views/static/img/**/*.{png,jpg,gif,ico}')
+//           .pipe(changed('src/public/img'))
+//           .pipe(cache(imagemin([
+//               imagemin.gifsicle({interlaced: true}),
+//               imagemin.jpegtran({progressive: true}),
+//               imagemin.optipng({optimizationLevel: 5}),
+//               imagemin.svgo({plugins: [{removeViewBox: true}]})
+//           ],{verbose:true})))
+//           .pipe(gulp.dest('src/public/img/'))
+// });
 //babel转换es5
 gulp.task('babel', function (){
     return gulp.src('src/views/static/js/**/*.js')
@@ -75,7 +73,8 @@ gulp.task('less', function (){
 });
 //发布线上,清除代码并美化压缩js，css文件
 gulp.task('build', function(){//gulp正在监听，这时候打包会报错
-	runSequence('clean', ['babel', 'less', 'imagemin'])
+	runSequence('clean', ['babel', 'less'])
+  //runSequence('clean', ['babel', 'less', 'imagemin'])
 });
 //plugins里的内容只是复制份到文件夹
 gulp.task('plugins', function(){//gulp正在监听，这时候打包会报错
@@ -113,6 +112,6 @@ gulp.task('default',['browser-sync'], function(){
 	gulp.watch('src/views/static/css/**/*.less',['less']);
   gulp.watch('src/views/static/plugins/**/*.*',['plugins']);
 	gulp.watch('src/views/static/js/**/*.js',['babel']);
-  gulp.watch('src/views/static/img/**/*.{png,jpg,gif,ico}',['imagemin']);
+  //gulp.watch('src/views/static/img/**/*.{png,jpg,gif,ico}',['imagemin']);
 	gulp.watch(files).on("change",bs.reload);
 });
