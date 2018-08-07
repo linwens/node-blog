@@ -27,9 +27,7 @@ var nodemon = require('gulp-nodemon');
 var path = require('path');
 var del = require('del');
 
-var config = require('./dist/config');
-console.log(config);
-console.log(config);
+var config = require('./lib/config/conf.dev');
 var files = ['src/views/**/*.{html,ejs}', 'src/public/js/**/*.js', 'src/public/css/**/*.css', 'src/public/img/**/*.{png,jpg,gif,ico}'];
 // 删除文件
 gulp.task('clean', function(cb) {
