@@ -28,7 +28,7 @@
  ```
    "dev": "gulp",
    "build": "babel lib -d dist",
-   "prod": "set NODE_ENV=production&&node dist/bin/www.js",
+   "prod": "export NODE_ENV=production&&node dist/bin/www.js", //linux环境下使用export设置环境变量
  ```
  * 基于nodemon 实现热启动
    本地开发时，项目代码修改后，通过nodemon重新启动服务
