@@ -30,7 +30,7 @@
    "build": "babel lib -d dist",
    "prod": "export NODE_ENV=production&&node dist/bin/www.js", //linux环境下使用export设置环境变量
  ```
- * 基于nodemon 实现热启动
+ * 本地开发基于nodemon 实现热启动
    本地开发时，项目代码修改后，通过nodemon重新启动服务
  * gulp + browser-sync 实现静态资源打包及前端代码热更新
    基于nodemon启动服务，为了保证前端代码更新不会重启服务器，增加ignore选项
@@ -94,7 +94,7 @@
 	npm run build, 打包是通过babel将lib文件夹生成dist文件夹，然后直接将dist文件夹拖到自己的服务器。 
 	
 	# 拖入文件
-	 将dist文件和src文件拖入myBlog跟package.json同级
+	 将dist文件和src文件拖入myBlog跟package.json同级。这里有个缺陷是src/static文件夹是多余的。
 
 	# 生成环境启动
 	npm run prod 或者 pm2 start npm -n 程序名称 -- run prod
