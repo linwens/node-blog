@@ -106,3 +106,7 @@
  https://developer.qiniu.com/kodo/sdk/1289/nodejs  七牛相关API  
  http://mongoosejs.com/docs/guide.html  mongoose API  
  https://www.npmjs.com/package/supertest  supertest单元测试 API  
+
+# 相关链接
+ 与个人博客相配套做了一个后台管理系统，用于维护个人博客相关内容 
+ https://github.com/linwens/vue-admin
