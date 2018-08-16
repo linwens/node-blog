@@ -1,17 +1,3 @@
-/***
- *基本：
- *1、babel处理es6--ok
- *2、less解析成css--ok
- *3、图片压缩--用npm下载包，确保包下载完整！
- *4、实时监听静态资源(css,js)变化，并刷新浏览器--ok
- *******
- *build静态资源：
- *静态资源路径动态修改
- *静态资源压缩
- *生成sourcemap以便调试
- *源代码删除后，及时清理处理后的代码
-**/
-
 var gulp = require('gulp');
 var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
