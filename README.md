@@ -1,6 +1,7 @@
 # 说明
   这是一个个人博客系统。服务端使用node，数据库使用mongodb，前端采用多页面的展现形式基于jquery和bootstrap。  
   本项目以学习自用为主，欢迎有兴趣的小伙伴吐槽或提issue；如有幸能被大牛看到，希望能得到些许指点，先在这里谢过啦...
+
 # 目录结构
 	node-blog:.
 	│  .babelrc
@@ -37,7 +38,6 @@
 	│      │  └─plugins
 	└─test  //单元测试
         
-
 # 功能
  * 使用html直接渲染，ejs文件存放公共模块插入页面，类似于freeMark  
  ```
@@ -143,7 +143,7 @@
  https://developer.qiniu.com/kodo/sdk/1289/nodejs  七牛相关API  
  http://mongoosejs.com/docs/guide.html  mongoose API  
  https://www.npmjs.com/package/supertest  supertest单元测试 API  
- 
+
 # 相关链接
  与个人博客相配套做了一个后台管理系统，用于维护个人博客相关内容 
  https://github.com/linwens/vue-admin
