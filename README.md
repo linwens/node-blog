@@ -1,6 +1,43 @@
 # 说明
   这是一个个人博客系统。服务端使用node，数据库使用mongodb，前端采用多页面的展现形式基于jquery和bootstrap。  
   本项目以学习自用为主，欢迎有兴趣的小伙伴吐槽或提issue；如有幸能被大牛看到，希望能得到些许指点，先在这里谢过啦...
+
+# 目录结构
+	node-blog:.
+	│  .babelrc
+	│  .gitignore
+	│  gulpfile.js
+	│  package-lock.json
+	│  package.json
+	│  README.md
+	├─dist  //babel转义后存放目录
+	├─lib
+	│  │  app.js  //express主程序文件
+	│  │  error.log  //错误日志
+	│  │  linkMongo.js //mongodb链接
+	│  │  
+	│  ├─bin //express启动文件
+	│  │      www.js
+	│  ├─config //项目配置文件
+	│  ├─module //项目功能模块
+	│  └─routes //页面，请求路由配置
+	│          
+	├─src
+	│  ├─public  //线上打包好后的静态资源目录
+	│  │  ├─css
+	│  │  ├─img 
+	│  │  ├─js
+	│  │  └─plugins
+	│  │                      
+	│  └─views  //存放页面html文件及本地开发时的static文件
+	│      │  index.html
+	│      ├─static  //存放本地开发时的静态资源
+	│      │  ├─css
+	│      │  ├─img
+	│      │  ├─js
+	│      │  └─plugins
+	└─test  //单元测试
+        
 # 功能
  * 使用html直接渲染，ejs文件存放公共模块插入页面，类似于freeMark  
  ```
