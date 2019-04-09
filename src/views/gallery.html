@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>gallery</title>
+	<link rel="stylesheet" type="text/css" href="/plugins/iconfont/fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/plugins/css/gallery/style2.css" />
+	<script src='/plugins/jquery.js'></script>
+	<script src="/plugins/gallery/modernizr-custom.js"></script>
+	<link rel='stylesheet' href='/plugins/bootstraps/css/bootstrap.min.css'/>
+	<link rel='stylesheet' href='/plugins/bootstraps/css/bootstrap-theme.min.css'/>
+	<link rel='stylesheet' href='/css/diy-bs.css'/>
+	<link rel='stylesheet' href='/plugins/iconfont/iconfont.css'/>
+	<script src="/plugins/iconfont/iconfont.js"></script>
+	<script src="/plugins/jquery.js"></script>
+	<script src="/plugins/bootstraps/js/bootstrap.min.js"></script>
+	<script src="/plugins/underscore-min.js"></script>
+	<script src='/js/util.js'></script>
+</head>
+<body>
+	<div class="xx-page-gallery">
+		<div class="container-fluid xx-gallery-header">
+			<div class="jumbotron">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-8">
+							<h1></h1>
+							<p></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	  	<div class="container">
+			<div class="content">
+				<div class="grid xx-img-container" id="J_imagesList"></div>
+				<!-- /grid -->
+				<div class="preview">
+					<button class="action action--close"><i class="fa fa-times"></i><span class="text-hidden">Close</span></button>
+					<div class="description description--preview"></div>
+				</div>
+				<!-- /preview -->
+			</div>
+		</div>
+	  	<% include ./footer%>
+	</div>
+	<script type="text/template" id="tpl_imagesList">
+		<#for(var i = 0;i<data.length;i++){#>
+			<div class="grid__item" data-size="<#=data[i].size#>">
+				<a data-href="<#=data[i].url#>" class="img-wrap">
+					<img src="<#=data[i].url#>" alt="img05" />
+					<div class="description description--grid">
+						<h3><#=data[i].title#></h3>
+						<p><#=data[i].desc#><em>&mdash; linwens</em></p>
+						<div class="details">
+							<ul>
+								<li><i class="icon icon-camera"></i><span><#=data[i].exif.model!='null'?data[i].exif.model:'--'#></span></li>
+								<li><i class="icon icon-focal_length"></i><span><#=data[i].exif.Flength!='null'?data[i].exif.Flength:'--'#></span></li>
+								<li><i class="icon icon-aperture"></i><span><#=data[i].exif.aperture!='null'?data[i].exif.aperture:'--'#></span></li>
+								<li><i class="icon icon-exposure_time"></i><span><#=data[i].exif.shutter!='null'?data[i].exif.shutter:'--'#></span></li>
+								<li><i class="icon icon-iso"></i><span><#=data[i].exif.iso!='null'?data[i].exif.iso:'--'#></span></li>
+							</ul>
+						</div>
+					</div>
+				</a>
+			</div>
+		<#}#>
+	</script>
+	<script src="/plugins/gallery/imagesloaded.pkgd.min.js"></script>
+	<script src="/plugins/gallery/masonry.pkgd.min.js"></script>
+	<script src="/plugins/gallery/classie.js"></script>
+	<script src="/plugins/gallery/main.js"></script>
+	<script>
+		var assort = Utils.getUrlquery('assort')?Utils.getUrlquery('assort'):'';
+		$(function(){
+			
+			getList(1,100,assort);//一次就加载全部
+			//设置页头文案
+			switch(assort){
+				case '日本':
+					$('.xx-gallery-header h1').html(assort);
+					$('.xx-gallery-header p').html('记录我们的日本行');
+					$('.xx-gallery-header').css({'color':'#000','background-image':'url(/img/gallery/japan.jpg)'});
+					break;
+				case '杭州':
+					$('.xx-gallery-header h1').html(assort);
+					$('.xx-gallery-header p').html('我在杭州第十个年头了？');
+					$('.xx-gallery-header').css({'color':'#292929','background-image':'url(/img/gallery/hangzhou.jpg)'});
+					break;
+				case '舟山':
+					$('.xx-gallery-header h1').html(assort);
+					$('.xx-gallery-header p').html('第一次旅行');
+					$('.xx-gallery-header').css({'color':'#eee','background-image':'url(/img/gallery/zhoushan.jpg)'});
+					break;
+				default: 
+					$('.xx-gallery-header h1').html('ALL IN');
+					$('.xx-gallery-header p').html('我的全部');
+			}
+		});
+		//获取列表数据
+		function getList(cur,ps,sch){
+			$.ajax({
+				url:'/ajax/getImglist',
+				type:'GET',
+				dataType:'JSON',
+				data:{curPage:cur,pageSize:ps,schWord:sch},
+				success:function(rslt){
+					if(rslt.res_code==2){
+						$('#J_imagesList').html('<div class="xx-u-nomore"><i class="iconfont">&#xe61a;</i><p>'+rslt.res_msg+' ~ ~</p></div>');
+						doPlugin();
+					}if(rslt.res_code==4){
+ 						$('#J_imagesList').html('<div class="xx-u-nomore"><i class="iconfont">&#xe87c;</i><p>'+rslt.res_msg+' ~ ~</p></div>');
+ 					}else{
+						var html = $('#tpl_imagesList').html();
+						_.templateSettings = {	//避免前端模板被ejs语法解析
+							evaluate    : /<#([\s\S]+?)#>/g,
+						    interpolate : /<#=([\s\S]+?)#>/g,
+						    escape      : /<#-([\s\S]+?)#>/g
+						};
+						var template = _.template(html);
+						var tpl = template({data:rslt.dataList});
+						$('#J_imagesList').append(tpl);
+						//分页信息
+						//确保数据获取后调用图片展示插件（问题就是阻塞）
+						setTimeout(function(){
+							doPlugin()
+						}, 0);
+						//flag = false;
+					}
+				},
+				error:function(rslt){}
+			})
+		};
+		//插件效果
+		function doPlugin() {
+			var support = { transitions: Modernizr.csstransitions },
+				// transition end event name
+				transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
+				transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+				onEndTransition = function( el, callback ) {
+					var onEndCallbackFn = function( ev ) {
+						if( support.transitions ) {
+							if( ev.target != this ) return;
+							this.removeEventListener( transEndEventName, onEndCallbackFn );
+						}
+						if( callback && typeof callback === 'function' ) { callback.call(this); }
+					};
+					if( support.transitions ) {
+						el.addEventListener( transEndEventName, onEndCallbackFn );
+					}
+					else {
+						onEndCallbackFn();
+					}
+				};
+
+			new GridFx(document.querySelector('.grid'), {
+				imgPosition : {
+					x : document.body.clientWidth<=768?1:-0.5,
+					y : 1
+				},
+				onOpenItem : function(instance, item) {
+					instance.items.forEach(function(el) {
+						if(item != el) {
+							var delay = Math.floor(Math.random() * 50);
+							el.style.WebkitTransition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), -webkit-transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+							el.style.transition = 'opacity .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1), transform .5s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+							el.style.WebkitTransform = 'scale3d(0.1,0.1,1)';
+							el.style.transform = 'scale3d(0.1,0.1,1)';
+							el.style.opacity = 0;
+						}
+					});
+				},
+				onCloseItem : function(instance, item) {
+					instance.items.forEach(function(el) {
+						if(item != el) {
+							el.style.WebkitTransition = 'opacity .4s, -webkit-transform .4s';
+							el.style.transition = 'opacity .4s, transform .4s';
+							el.style.WebkitTransform = 'scale3d(1,1,1)';
+							el.style.transform = 'scale3d(1,1,1)';
+							el.style.opacity = 1;
+
+							onEndTransition(el, function() {
+								el.style.transition = 'none';
+								el.style.WebkitTransform = 'none';
+							});
+						}
+					});
+				}
+			});
+		};
+	</script>
+</body>
+</html>

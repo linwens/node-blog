@@ -1,0 +1,74 @@
+<div class="xx-m-artDetail blog-post col-xs-12 col-sm-9 col-md-9">
+	<div id="J_detail">
+		<h2 class="blog-post-title">文章标题加载中</h2>
+		<p class="blog-post-meta">发表时间：0000-00-00 by LinWenshu</p>
+		<div class="xx-u-text">文章内容加载中</div>
+	</div>
+	<div id="J_comment-box"></div><!-- 评论区的容器 -->
+</div>
+<!-- 评论系统start -->
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: 'linwens',//写github账号的username就好了不用写id
+  repo: 'xxBlog',//直接写项目的name
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('J_comment-box');
+</script>
+<!-- 评论系统end -->
+<script type="text/template" id="tpl_detail">
+	<h2 class="blog-post-title"><#= data.title#></h2>
+	<p class="blog-post-meta"><i class="iconfont">&#xe620;</i>发表时间：<#= Utils.timeFormat(data.time, 1)#> <i class="iconfont">&#xe613;</i> by Linws </p>
+	<div class="xx-u-text"><#= data.text#></div>
+	<div class="xx-u-tags">
+		<span><i class="iconfont">&#xe6e0;</i>本文标签 : </span>
+		<# if(data.tags){ #>
+			<#for(var i = 0;i<data.tags.length;i++){#>
+				<a class="label label-default" href="/blog?tag=<#= data.tags[i]#>"><#= data.tags[i]#></a>
+			<#}#>
+		<#}#>
+	</div>
+</script>
+<script>
+	$(function(){
+		var t = Utils.getUrlquery('t');
+		setTimeout(function(){getDetail(t)}, 100, t);
+		// getDetail(id);
+	});
+	function getDetail(t){
+		$.ajax({
+			url:"/ajax/getArticle",
+			type:"GET",
+			dataType:"JSON",
+			data:{time:t},
+			success:function(rslt){
+				if(rslt.res_code==2){
+ 					$('.xx-m-artDetail').html('<div class="xx-u-nomore"><i class="iconfont">&#xe652;</i><p>'+rslt.res_msg+' ~ ~</p></div>');
+ 					$('.xx-m-artDetail').css({'opacity':1,'right':0});
+ 				}if(rslt.res_code==4){
+ 					$('.xx-m-artDetail').html('<div class="xx-u-nomore"><i class="iconfont">&#xe87c;</i><p>'+rslt.res_msg+' ~ ~</p></div>');
+ 					$('.xx-m-artDetail').css({'opacity':1,'right':0});
+ 				}else{
+					var html = $('#tpl_detail').html();//banner上的标展示
+					_.templateSettings = {	//避免前端模板被ejs语法解析
+						evaluate    : /<#([\s\S]+?)#>/g,
+					    interpolate : /<#=([\s\S]+?)#>/g,
+					    escape      : /<#-([\s\S]+?)#>/g
+					};
+					var template = _.template(html);
+					var tpl = template({data:rslt.articleDetail});
+					$('#J_detail').html(tpl);
+					$('.xx-m-artDetail').css({'opacity':1,'right':0});
+					//面包屑增加文字
+					$('.breadcrumb').append('<li class="active">'+rslt.articleDetail.title+'</li>')
+				}
+			},
+			error:function(rslt){}
+		})
+	};
+</script>
