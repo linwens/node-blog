@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+	<link rel='stylesheet' href='/css/style.css' />
+	<link rel='stylesheet' href='/css/h5demo.css' />
+	<script src='/plugins/jquery.js'></script>
+	<script src="/plugins/underscore-min.js"></script>
+	<script src="/plugins/jquery-qrcode.min.js"></script>
+	<script src="/js/dotAndline.min.js"></script>
+</head>
+<body>
+	<div class="h5-hd" style="background-image: url();">
+		<canvas id="J_dotLine" style="background-color: #F7F7F7;"></canvas>
+	</div>
+	<div class="h5-bd">
+		<ul class="h5-list" id="J_worksList"></ul>
+		<!-- <div class="h5-page"></div> -->
+	</div>
+	<!-- <div class="h5-ft">
+		<p>做着玩</p>
+	</div> -->
+	<div class="h5-dialog" style="display: none;">
+		<div class="u-box">
+			<div class="m-iframe" id="h5-url">
+				<iframe src="" frameborder="0" scrolling="no"></iframe>
+			</div>
+			<div class="m-side">
+				<!-- <img src="" alt="" id="h5-code"> -->
+				<div id="qrcode"></div>
+				<p id="h5-desc">ddddddd作品描述</p>
+			</div>
+		</div>
+		<div class="u-close">X</div>
+	</div>
+	<script type="text/template" id="tpl_worksList">
+		<#for(var i = 0;i<data.length;i++){#>
+			<li class="list-item">
+				<div class="it-ct" style="background:#21B3FC url(/h5static/<#=data[i].name#>/img/data/intro.jpg) no-repeat center;background-size: 100% 100%;">
+					<span data-name="<#=data[i].name#>"></span>
+					<p class="it-desc"><#=data[i].desc#></p>
+				</div>
+			</li>
+		<#}#>
+	</script>
+	<script>
+		$(function(){
+			getList(1,'');
+			$('.u-close').on('click',function(){
+				$("#qrcode").html('');//清空之前生成的二维码
+				$('.h5-dialog').hide();
+			})
+			$('#J_worksList').on('click','span',function(){
+				var name = $(this).attr('data-name'),
+					desc = $(this).next('p').html();
+				showDialog(name, desc)
+			});
+			//窗口缩放修改弹框尺寸
+			var oh = $(window).height();
+			$(window).resize(function(){
+				changeSize(oh)
+			})
+			//banner增加粒子线条效果
+			var cw = $('.h5-hd').width();
+			var ch = $('.h5-hd').height();
+			var dotline = new Dotline({
+				dom:'J_dotLine',//画布id
+				cw:cw,//画布宽
+				ch:ch,//画布高
+				ds:200,//点的个数
+				r:0.5,//圆点半径
+				dis:80//触发连线的距离
+			}).start()
+		});
+		//获取列表数据
+		function getList(cur, sch){
+			$.ajax({
+				url:'/ajax/getH5list',
+				type:'GET',
+				dataType:'JSON',
+				data:{curPage:cur,schWord:sch},
+				success:function(rslt){
+					if(rslt.res_code==2){
+						alert(rslt.res_msg);
+						window.location.href="/";
+					}else{
+						var html = $('#tpl_worksList').html();
+						_.templateSettings = {	//避免前端模板被ejs语法解析
+							evaluate    : /<#([\s\S]+?)#>/g,
+						    interpolate : /<#=([\s\S]+?)#>/g,
+						    escape      : /<#-([\s\S]+?)#>/g
+						};
+						var template = _.template(html);
+						var tpl = template({data:rslt.dataList});
+						$('#J_worksList').html(tpl);
+						//分页信息
+					}
+				},
+				error:function(rslt){}
+			})
+		}
+		//点击弹窗
+		function showDialog(name, desc){
+			$('.h5-dialog').show();
+			//$('#h5-code').attr({'src':'/h5static/'+name+'/img/data/code.png'});
+			$('#h5-desc').html(desc);
+			$('#h5-url').children('iframe').attr({'src':'/H5Demo/'+name});
+			creatQRcode(name)
+		}
+		//窗口缩放
+		function changeSize(oh){
+			var winHeight = $(window).height();
+			var scaleY = winHeight/oh;
+			$('.u-box').css('transform','scale('+scaleY+')');
+		}
+		//生成二维码
+		function creatQRcode(fileName){
+			$("#qrcode").qrcode({
+				// render 方式: 'canvas', 'image' or 'div'//用image适配方便
+			    render: 'image',
+
+			    // 容错等级: 'L', 'M', 'Q' or 'H'
+			    ecLevel: 'L',
+
+			    // 控制canvas 偏移
+			    left: 0,
+			    top: 0,
+
+			    // 控制二维码尺寸
+			    size: 320,
+
+			    // 控制二维码颜色
+			    fill: '#000',
+
+			    // background color or image element, null for transparent background
+			    background: '#fff',
+
+			    // 二维码内容
+			    text: 'http://www.shy-u.xyz/H5Demo/'+encodeURIComponent(fileName),
+			    //text: 'https://wap.cnaidai.com/wap/register.html?user_id='+userId,
+
+			    // 控制二维码的圆角: 0.0 .. 0.5
+			    radius: 0,
+
+			    // 边缘留空，默认0
+			    quiet: 1,
+			});
+		}
+	</script>
+</body>
+</html>

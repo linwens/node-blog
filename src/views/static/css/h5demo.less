@@ -1,0 +1,123 @@
+.h5-hd{
+	width: 100%;
+	height: 300px;
+	background-color: #98FCF5;
+	background-size: cover;
+	background-position: center 50%;
+}
+.h5-bd{
+	width: 1080px;
+	min-height: 650px;
+	margin: 0 auto;
+	.h5-list{
+		overflow: hidden;
+		padding: 10px;
+		.list-item{
+			float: left;
+			width: 180px;
+			height: 292px;
+			padding: 10px;
+			transition:all .4s linear;
+			&:hover{
+				box-shadow: 0 0 10px 1px #D3D3D3;
+				cursor: pointer;
+				.it-desc{
+					bottom: 0;
+				}
+			}
+			.it-ct{
+				position: relative;
+				width: 180px;
+				height: 292px;
+				overflow: hidden;
+				span{
+					display: block;
+					width:100%;
+					height:100%;
+				}
+			}
+			.it-desc{
+				position: absolute;
+				bottom: -180px;
+				width: 100%;
+				line-height: 26px;
+				background: rgba(211,210,210,0.6);
+				text-align: center;
+				font-size: 14px;
+				color: #fff;
+				transition:all .3s ease-out;
+			}
+		}
+	}
+}
+.h5-ft{
+	width: 100%;
+	height: 100px;
+	background: #9E9E9E;
+	p{
+		font-size: 18px;
+		text-align: center;
+		color: #fff;
+	}
+}
+.h5-dialog{
+	position: fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	transition:all .2 linear;
+	.u-box{
+		position: relative;
+		width: 880px;
+		height: 100%;
+		padding: 0;
+		margin: 0 auto;
+		.m-iframe{
+			position: absolute;
+			top:50%;
+			left:50px;
+			width: 375px;
+			height: 650px;
+			padding: 20px 10px 40px;
+			margin-top: -355px;
+			background: #fff;
+			border-radius: 10px;
+			iframe{
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.m-side{
+			position: absolute;
+			top:50%;
+			right: 50px;
+			width: 300px;
+			padding: 100px 0 0;
+			margin-top: -200px;
+			text-align: center;
+			#qrcode,img{
+				display: inline-block;
+				width: 200px;
+				height: 200px;
+			}
+			p{
+				font-size: 16px;
+				color: #ccc;
+			}
+		}
+	}
+	.u-close{
+		position: absolute;
+		top:0;
+		right: 0;
+		width: 30px;
+		height: 30px;
+		line-height:30px;
+		text-align: center;
+		font-size:24px;
+		color: #fff;
+		cursor:pointer;
+	}
+}

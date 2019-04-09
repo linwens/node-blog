@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title><%= title%></title>
+	<link rel='stylesheet' href='/plugins/bootstraps/css/bootstrap.min.css'/>
+	<link rel='stylesheet' href='/plugins/bootstraps/css/bootstrap-theme.min.css'/>
+	<link rel="stylesheet" href="/plugins/css/highlight/tomorrow-night.css">
+	<link rel='stylesheet' href='/css/diy-bs.css'/>
+	<link rel='stylesheet' href='/plugins/iconfont/iconfont.css'/>
+	<script src="/plugins/iconfont/iconfont.js"></script>
+	<script src="/plugins/jquery.js"></script>
+	<script src="/plugins/bootstraps/js/bootstrap.min.js"></script>
+	<script src="/plugins/underscore-min.js"></script>
+	<script src='/js/util.js'></script>
+</head>
+<body>
+	<div class="xx-page-blog">
+		<% include ./header%>
+		<!-- 主体内容 -->
+		<div class="container-fluid xx-page-main">
+			<!-- 左侧边栏 -->
+			<div class="xx-m-sidemain hidden-xs col-sm-3 col-md-3">
+			  	<% include ./sidebar%>
+			</div>
+			<%if(type==='blog'){%>
+				<% include ./blog%>
+			<%}else{%>
+				<% include ./detail%>
+			<%}%>
+		</div>
+		<!-- mobile 侧边栏 -->
+		<div class="xx-m-mobile-sidebar visible-xs-block container-fluid">
+			<div class="xx-u-brief">
+				<h2>林文书的博客</h2>
+				<span>每天进步一点点</span>
+			</div>
+			<% include ./sidebar%>
+		</div>
+		<!-- 遮罩 -->
+		<div class="xx-u-mask" style="display: none;"></div>
+		<div class="xx-u-gotop">
+			<i class="iconfont">&#xe612;</i>
+		</div>
+		<% include ../footer%>
+	</div>
+	<script>
+		$(function(){
+			//移动端侧边栏交互
+			$('#J_show_mbside').click(function(){
+				$('.xx-m-mobile-sidebar').css({'left':0});
+				$('.xx-u-mask').show();
+			});
+			$('.xx-u-mask, .xx-m-mobile-sidebar').click(function(){
+				$('.xx-m-mobile-sidebar').css({'left':'-60%'});
+				$('.xx-u-mask').hide();
+			});
+			//返回顶部效果
+			$('.xx-u-gotop').click(function(e){
+				e.preventDefault();
+				$('body,html').animate({scrollTop:0},{duration:800,easing:'easeInOutCubic'});//easeInOutCubic，快慢快 
+		                return false; 
+			});
+			jQuery.extend( jQuery.easing,{  //定义easeInOutCubic 函数
+			    easeInOutCubic: function(a, b, c, d, e) {
+					if ((b /= e / 2) < 1) return d / 2 * b * b * b + c;
+					return d / 2 * ((b -= 2) * b * b + 2) + c;
+				},  
+			});
+			var barTop = $('.xx-m-sidemain').offset().top;
+			$(window).scroll(function(){
+				
+				var scrollTop = $(this).scrollTop();
+				if(scrollTop>200){
+					$('.xx-u-gotop').css({'opacity':1});
+				}else{
+					$('.xx-u-gotop').css({'opacity':0});
+				}
+				//左侧边栏下移
+				if(scrollTop>(barTop-10)){
+					$('.xx-m-sidemain').css({'position':'absolute','top':scrollTop-barTop+10});
+				}else{
+					$('.xx-m-sidemain').css({'position':'static','top':0});
+				}
+			})
+		 	//获取侧边栏文章数
+		 	var urlArr = document.body.clientWidth<768?$('.xx-m-mobile-sidebar .list-group-item>a'):$('.xx-m-sidemain .list-group-item>a');
+			urlArr.each(function(el){
+				setTimeout(function(i){
+					$.ajax({
+						url:'/ajax/getList',
+						type:'GET',
+						dataType:'JSON',
+						data:{curPage: 1, schWord:urlArr.eq(i).data('sw'),from:'front'},
+						success:function(rslt){
+							if(rslt.res_code==2){
+		 						urlArr.eq(i).siblings('i').html('(0)');
+		 					}else{
+		 						urlArr.eq(i).siblings('i').html('('+rslt.total+')');
+		 					}
+							
+						},
+						error:function(){}
+					});
+				}, 0, el);
+			});
+		})
+	</script>
+</body>
+</html>

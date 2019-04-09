@@ -1,0 +1,91 @@
+<!-- 文章列表 -->
+<div class="xx-m-article col-xs-12 col-sm-9 col-md-9">
+	<div id="J_blog">
+	</div>
+	<nav aria-label="...">
+	  <ul class="pager xx-u-page">
+	    <li><button id="btn-prev" data-page="1">Previous</button></li>
+	    <li><button id="btn-next" data-page="2">Next</button></li>
+	  </ul>
+	</nav>
+</div>
+<script type="text/template" id="tpl_blog">
+	<#var imgArr = ['css','css3','html5','javascript','node','gulp','vue','less','jquery',"git"];#>
+	<#for(var i = 0;i<data.length;i++){#>
+		<article>
+			<#if(imgArr.indexOf(data[i].tags[0]?data[i].tags[0].toLowerCase():'')<=0){#>
+				<a href="/blog/detail?t=<#=data[i].time#>" class="xx-u-ttpic" style="background-image: url(/img/titleImg/default.jpg);">
+				</a>
+			<#}else{#>
+				<a href="/blog/detail?t=<#=data[i].time#>" class="xx-u-ttpic" style="background-image: url(/img/titleImg/<#=data[i].tags[0].toLowerCase()#>.jpg);">
+				</a>
+			<#}#>
+			<div class="xx-m-txt">
+				<h2><a href="/blog/detail?t=<#=data[i].time#>"><#= data[i].title #></a></h2>
+				<span><i class="iconfont">&#xe620;</i>发表于 : <#= Utils.timeFormat(data[i].time,1)#> <i class="iconfont">&#xe613;</i> by linws</span>
+				<p><#= data[i].brief #>...<a href="/blog/detail?t=<#=data[i].time#>">[阅读全文]</a></p>
+			</div>
+		</article>
+		<#if(i<(data.length-1)){#><hr><#}#>
+	<#}#>
+</script>
+<script>
+	$(function(){
+		var tag = Utils.getUrlquery('tag');
+		var schWord = Utils.getUrlquery('schWord');
+		if(tag){
+			//$('#schWork').val(tag);
+			getList(1,5,tag);
+		}else if(schWord){
+			//$('#schWork').val(schWord);
+			getList(1,5,schWord);
+		}else{
+			getList(1);
+		}
+		//分页限制
+		$('#btn-prev, #btn-next').on('click', function(){
+			document.body.scrollTop = 0;
+			getList($(this).attr('data-page'), 5, schWord);
+			$(this).parents('li').siblings().find('button').attr({'disabled':false});
+		});
+	});
+	//请求文章数据
+	function getList(cur, ps, sch){
+ 		$.ajax({
+ 			url:'/ajax/getList',
+ 			type:'GET',
+ 			dataType:'JSON',
+ 			data:{curPage: cur,pageSize: ps,schWord:sch,from:'front'},
+ 			success:function(rslt){
+ 				if(rslt.res_code==2){
+ 					$('.xx-m-article').html('<div class="xx-u-nomore"><i class="iconfont">&#xe652;</i><p>'+rslt.res_msg+' ~ ~</p></div>');
+ 				}if(rslt.res_code==4){
+ 					$('.xx-m-article').html('<div class="xx-u-nomore"><i class="iconfont">&#xe87c;</i><p>'+rslt.res_msg+' ~ ~</p></div>');
+ 				}else{
+ 					var html = $('#tpl_blog').html();
+ 					_.templateSettings = {	//避免前端模板被ejs语法解析
+ 						evaluate    : /<#([\s\S]+?)#>/g,
+ 					    interpolate : /<#=([\s\S]+?)#>/g,
+ 					    escape      : /<#-([\s\S]+?)#>/g
+ 					};
+ 					var template = _.template(html);
+ 					var tpl = template({data:rslt.dataList});
+ 					$('#J_blog').html(tpl);
+ 					$('.xx-m-article').css({'opacity':1,'top':0});
+ 					//分页信息
+ 					if(rslt.page==1){
+ 						$('#btn-prev').attr({'disabled':true}).css({'color':'#ddd'});
+ 					}else{
+ 						$('#btn-prev').attr({'data-page':parseInt(rslt.page)-1}).css({'color':'#337ab7'});
+ 					}
+ 					if((rslt.page-1)*rslt.page_size+rslt.dataList.length==rslt.total){
+ 						$('#btn-next').attr({'disabled':true}).css({'color':'#ddd'});
+ 					}else{
+ 						$('#btn-next').attr({'data-page':parseInt(rslt.page)+1}).css({'color':'#337ab7'});
+ 					}
+ 				}
+ 			},
+ 			error:function(rslt){}
+ 		})
+ 	};
+</script>

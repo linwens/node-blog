@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>老板今年不发年终奖,我准备整把大的</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=0.5,maximum-scale=2.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<script src="/h5static/first/js/flexible.js"></script>
+	<script src="/h5static/first/js/swiper-3.4.1.min.js"></script>
+	<script src="/h5static/first/js/zepto.min.js"></script>
+	<style>
+		.swiper-container {
+			width: 10rem;
+			height: 100%;
+			margin: 0 auto;
+			overflow: hidden
+		}
+
+		.m-page {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background: #ea6259;
+			background-size: 100% 100%
+		}
+
+		.m-page>img {
+			position: absolute;
+			width: auto
+		}
+
+		.m-page>img.text1 {
+			top: 4.54rem;
+			left: .8rem;
+			width: 4.88rem;
+			height: 2.613rem;
+			-webkit-transform: rotate(-10deg);
+			transform: rotate(-10deg);
+			-webkit-transform-origin: 75% 90%;
+			transform-origin: 75% 90%;
+			visibility: hidden
+		}
+
+		.m-page>img.text2 {
+			top: 5.31rem;
+			left: 6.2rem;
+			width: 3.28rem;
+			height: 2.73rem;
+			-webkit-transform: rotate(10deg);
+			transform: rotate(10deg);
+			-webkit-transform-origin: 25% 95%;
+			transform-origin: 25% 95%;
+			visibility: hidden
+		}
+
+		.m-page>img.u-bg {
+			width: 100.5%;
+			height: 100%;
+		}
+
+		.m-page.pageOne>img.person {
+			top: 7.21rem;
+			left: 1.2rem;
+			width: 7.96rem;
+			-webkit-transform: translate(0,20%);
+			transform: translate(0,20%)
+		}
+
+		.m-page.pageTwo>img.person {
+			top: 7.316rem;
+			left: 1.38rem;
+			width: 8.4rem;
+			-webkit-transform: translate(0,20%);
+			transform: translate(0,20%)
+		}
+
+		.m-page.pageThree>img.person {
+			top: 7.0rem;
+			left: .84rem;
+			width: 8.51rem;
+			-webkit-transform: translate(0,-18%);
+			transform: translate(0,-18%)
+		}
+
+		.m-page.pageFour>img.person {
+			top: 1.52rem;
+			left: 0;
+			width: 9.093rem;
+			-webkit-transform: translate(0,-18%);
+			transform: translate(0,-18%)
+		}
+		.m-page.pageFour #page4text{
+			height:36%;
+		}
+		.m-page .doSth {
+			position: absolute;
+			width: 100%;
+			bottom: .58rem;
+			left: 0;
+			-webkit-transform: translate(0,120%);
+			transform: translate(0,120%)
+		}
+
+		.doSth .u-btns {
+			float: left;
+			margin-left: 1.33rem
+		}
+
+		.doSth .u-btns>a {
+			display: block;
+			width: 3.21rem;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 100% 100%
+		}
+
+		.doSth .u-btns>a:nth-child(1) {
+			height: .92rem;
+			margin-bottom: .48rem;
+			background-image: url(/h5static/first/img/page4-btn2.png)
+		}
+
+		.doSth .u-btns>a:nth-child(2) {
+			height: .787rem;
+			background-image: url(/h5static/first/img/page4-btn1.png)
+		}
+
+		.doSth .u-code {
+			float: right;
+			margin-right: 1.26rem;
+			text-align: center;
+			font-size: .346rem;
+			color: #fff
+		}
+		.arrowDown{
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			z-index: 99;
+		}
+		.arrowDown>img{
+			width: 0.787rem;
+			height: 0.453rem;
+		}
+		.sharePop {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,.5)
+		}
+
+		.sharePop>img {
+			position: absolute;
+			top: .46rem;
+			right: .68rem;
+			width: 4.787rem
+		}
+
+		.animated {
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-timing-function: ease-in-out;
+			-webkit-animation-iteration-count: 1;
+			animation-iteration-count: 1
+		}
+
+		.trans2up {
+			-webkit-animation-name: trans2up;
+			animation-name: trans2up;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-timing-function: ease-in-out
+		}
+
+		.pageFour .trans2up {
+			-webkit-animation-name: trans2up2;
+			animation-name: trans2up2;
+			-webkit-animation-delay: 1s;
+			animation-delay: 1s;
+			-webkit-animation-duration: .8s;
+			animation-duration: .8s
+		}
+
+		@-webkit-keyframes trans2up {
+			from {
+				-webkit-transform: translate(0,20%);
+				transform: translate(0,20%)
+			}
+
+			to {
+				-webkit-transform: translate(0,0);
+				transform: translate(0,0)
+			}
+		}
+
+		@keyframes trans2up {
+			from {
+				-webkit-transform: translate(0,20%);
+				transform: translate(0,20%)
+			}
+
+			to {
+				-webkit-transform: translate(0,0);
+				transform: translate(0,0)
+			}
+		}
+
+		@-webkit-keyframes trans2up2 {
+			from {
+				-webkit-transform: translate(0,130%);
+				transform: translate(0,130%)
+			}
+
+			to {
+				-webkit-transform: translate(0,10%);
+				transform: translate(0,10%)
+			}
+		}
+
+		@keyframes trans2up2 {
+			from {
+				-webkit-transform: translate(0,130%);
+				transform: translate(0,130%)
+			}
+
+			to {
+				-webkit-transform: translate(0,10%);
+				transform: translate(0,10%)
+			}
+		}
+
+		.trans2dn {
+			-webkit-animation-name: trans2dn;
+			animation-name: trans2dn;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-timing-function: ease-in-out
+		}
+
+		@-webkit-keyframes trans2dn {
+			from {
+				-webkit-transform: translate(0,-18%);
+				transform: translate(0,-18%)
+			}
+
+			to {
+				-webkit-transform: translate(0,-5%);
+				transform: translate(0,-5%)
+			}
+		}
+
+		@keyframes trans2dn {
+			from {
+				-webkit-transform: translate(0,-18%);
+				transform: translate(0,-18%)
+			}
+
+			to {
+				-webkit-transform: translate(0,-5%);
+				transform: translate(0,-5%)
+			}
+		}
+
+		.trans2rt {
+			-webkit-animation-name: trans2rt;
+			animation-name: trans2rt;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s
+		}
+
+		@-webkit-keyframes trans2rt {
+			from {
+				-webkit-transform: translate(-50%,30%);
+				transform: translate(-50%,30%);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: translate(0,0);
+				transform: translate(0,0);
+				visibility: visible
+			}
+		}
+
+		@keyframes trans2rt {
+			from {
+				-webkit-transform: translate(-50%,30%);
+				transform: translate(-50%,30%);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: translate(0,0);
+				transform: translate(0,0);
+				visibility: visible
+			}
+		}
+
+		.pageFour .trans2rt {
+			-webkit-animation-name: trans2rt2;
+			animation-name: trans2rt2;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-delay: 1s;
+			animation-delay: 1s;
+			-webkit-transform-origin: 0 45%;
+			transform-origin: 0 45%
+		}
+
+		@-webkit-keyframes trans2rt2 {
+			from {
+				-webkit-transform: translate(-30%,0);
+				transform: translate(-30%,0);
+				-webkit-transform: rotate(-10deg);
+				transform: rotate(-10deg);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: translate(0,0);
+				transform: translate(0,0);
+				-webkit-transform: rotate(0);
+				transform: rotate(0);
+				visibility: visible
+			}
+		}
+
+		@keyframes trans2rt2 {
+			from {
+				-webkit-transform: translate(-30%,0);
+				transform: translate(-30%,0);
+				-webkit-transform: rotate(-10deg);
+				transform: rotate(-10deg);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: translate(0,0);
+				transform: translate(0,0);
+				-webkit-transform: rotate(0);
+				transform: rotate(0);
+				visibility: visible
+			}
+		}
+
+		.trans2lf {
+			-webkit-animation-name: trans2lf;
+			animation-name: trans2lf;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s
+		}
+
+		@-webkit-keyframes trans2lf {
+			from {
+				-webkit-transform: translate(50%,30%);
+				transform: translate(50%,30%);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: translate(0,0);
+				transform: translate(0,0);
+				visibility: visible
+			}
+		}
+
+		@keyframes trans2lf {
+			from {
+				-webkit-transform: translate(50%,30%);
+				transform: translate(50%,30%);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: translate(0,0);
+				transform: translate(0,0);
+				visibility: visible
+			}
+		}
+
+		.rot2rt {
+			-webkit-animation-name: rot2rt;
+			animation-name: rot2rt;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-timing-function: ease-in-out;
+			-webkit-transform-origin: 75% 90%;
+			transform-origin: 75% 90%;
+			-webkit-animation-delay: 1s;
+			animation-delay: 1s
+		}
+
+		@-webkit-keyframes rot2rt {
+			from {
+				-webkit-transform: rotate(-10deg);
+				transform: rotate(-10deg);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: rotate(0);
+				transform: rotate(0);
+				visibility: visible
+			}
+		}
+
+		@keyframes rot2rt {
+			from {
+				-webkit-transform: rotate(-10deg);
+				transform: rotate(-10deg);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: rotate(0);
+				transform: rotate(0);
+				visibility: visible
+			}
+		}
+
+		.rot2lf {
+			-webkit-animation-name: rot2lf;
+			animation-name: rot2lf;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-timing-function: ease-in-out;
+			-webkit-transform-origin: 25% 95%;
+			transform-origin: 25% 95%;
+			-webkit-animation-delay: 1s;
+			animation-delay: 1s
+		}
+
+		@-webkit-keyframes rot2lf {
+			from {
+				-webkit-transform: rotate(10deg);
+				transform: rotate(10deg);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: rotate(0);
+				transform: rotate(0);
+				visibility: visible
+			}
+		}
+
+		@keyframes rot2lf {
+			from {
+				-webkit-transform: rotate(10deg);
+				transform: rotate(10deg);
+				visibility: hidden
+			}
+
+			to {
+				-webkit-transform: rotate(0);
+				transform: rotate(0);
+				visibility: visible
+			}
+		}
+
+		.zoomOut {
+			-webkit-animation-name: zoomOut;
+			animation-name: zoomOut;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-timing-function: ease-in-out
+		}
+
+		@-webkit-keyframes zoomOut {
+			from {
+				-webkit-transform: scale(0,0);
+				transform: scale(0,0)
+			}
+
+			to {
+				-webkit-transform: scale(1,1);
+				transform: scale(1,1)
+			}
+		}
+
+		@keyframes zoomOut {
+			from {
+				-webkit-transform: scale(0,0);
+				transform: scale(0,0)
+			}
+
+			to {
+				-webkit-transform: scale(1,1);
+				transform: scale(1,1)
+			}
+		}
+
+		.zoomLoop {
+			-webkit-animation-name: zoomLoop;
+			animation-name: zoomLoop;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-timing-function: ease-in-out;
+			-webkit-animation-iteration-count: 3;
+			animation-iteration-count: 3;
+			-webkit-animation-delay: 1s;
+			animation-delay: 1s
+		}
+
+		@-webkit-keyframes zoomLoop {
+			from {
+				-webkit-transform: scale(1,1);
+				transform: scale(1,1);
+				visibility: hidden
+			}
+
+			40% {
+				-webkit-transform: scale(1.3,1.3);
+				transform: scale(1.3,1.3)
+			}
+
+			to {
+				-webkit-transform: scale(1,1);
+				transform: scale(1,1);
+				visibility: visible
+			}
+		}
+
+		@keyframes zoomLoop {
+			from {
+				-webkit-transform: scale(1,1);
+				transform: scale(1,1);
+				visibility: hidden
+			}
+
+			40% {
+				-webkit-transform: scale(1.3,1.3);
+				transform: scale(1.3,1.3)
+			}
+
+			to {
+				-webkit-transform: scale(1,1);
+				transform: scale(1,1);
+				visibility: visible
+			}
+		}
+		.arrowDown .arrowAmt{
+			-webkit-animation-name: arrowAmt;
+			animation-name: arrowAmt;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-timing-function: ease-in-out;
+			animation-timing-function: ease-in-out;
+			-webkit-animation-iteration-count: infinite;
+			animation-iteration-count: infinite;
+			-webkit-animation-delay: 1.5s;
+			animation-delay: 1.5s
+		}
+		@-webkit-keyframes arrowAmt{
+			from {
+				-webkit-transform: translate(0,-35%);
+				transform: translate(0,-35%);
+				opacity: 0.6;
+			}
+			80%{
+				-webkit-transform: translate(0,10%);
+				transform: translate(0,10%);
+				opacity: 1;
+			}
+			to {
+				-webkit-transform: translate(0,-35%);
+				transform: translate(0,-35%);
+				opacity: 0.6;
+			}
+		}
+		@keyframes arrowAmt{
+			from {
+				-webkit-transform: translate(0,-35%);
+				transform: translate(0,-35%);
+				opacity: 0.6;
+			}
+			80%{
+				-webkit-transform: translate(0,10%);
+				transform: translate(0,10%);
+				opacity: 1;
+			}
+			to {
+				-webkit-transform: translate(0,-35%);
+				transform: translate(0,-35%);
+				opacity: 0.6;
+			}
+		}
+		/*loading*/
+		.u-loading {
+		  width: 100%;
+		  height: 100%;
+		  position: fixed;
+		  top:0;
+		  left:0;
+		  background: #e64439;
+		  z-index: 98;
+		}
+		.spinner {
+		  width: 1.6rem;
+		  height: 1.6rem;
+		  position: absolute;
+		  top:50%;
+		  left:50%;
+		  -webkit-transform: translate(-50%,-50%);
+		  transform: translate(-50%,-50%);
+
+		}
+		.double-bounce1, .double-bounce2 {
+		  width: 100%;
+		  height: 100%;
+		  border-radius: 50%;
+		  background-color: #000;
+		  opacity: 0.6;
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		   
+		  -webkit-animation: bounce 2.0s infinite ease-in-out;
+		  animation: bounce 2.0s infinite ease-in-out;
+		}
+		 
+		.double-bounce2 {
+		  -webkit-animation-delay: -1.0s;
+		  animation-delay: -1.0s;
+		}
+		 
+		@-webkit-keyframes bounce {
+		  0%, 100% { -webkit-transform: scale(0.0) }
+		  50% { -webkit-transform: scale(1.0) }
+		}
+		 
+		@keyframes bounce {
+		  0%, 100% {
+		    transform: scale(0.0);
+		    -webkit-transform: scale(0.0);
+		  } 50% {
+		    transform: scale(1.0);
+		    -webkit-transform: scale(1.0);
+		  }
+		}
+		/*音乐按钮*/
+		.u-music{position: absolute;bottom:0.7rem;right:0.5rem;z-index: 100;width: 1rem;height: 1rem;background-image: url(/h5static/first/img/musicBtn.png);background-repeat: no-repeat;-webkit-background-size: 2rem 0.94rem;background-size: 2rem 0.94rem;background-position: -1rem 0.04rem;}
+		.u-music.f-pause{background-position: 0.054rem 0.04rem;}
+		/*针对iPhone4*/
+		@media screen and (device-width:320px) and (device-height:480px) and (-webkit-device-pixel-ratio:2) {
+			.m-page>img.u-bg {
+				width: 100%;
+				height: 110%
+			}
+			.m-page>img.text1 {
+				top: 3.94rem;
+			}
+
+			.m-page>img.text2 {
+				top: 4.41rem;
+			}
+			.m-page.pageOne>img.person {
+				top: 6.31rem;
+			}
+			.m-page.pageOne>img:nth-child(2){
+				top:10.8rem!important;
+			}
+			.m-page.pageOne>img:nth-child(3){
+				top:10.88rem!important;
+			}
+			.m-page.pageTwo>img.person {
+				top: 6.316rem;
+			}
+			.m-page.pageTwo>img:nth-child(3){
+				top:7.26rem!important;
+			}
+			.m-page.pageThree>img.person {
+				top: 5.6rem;
+			}
+			.m-page.pageThree>img:nth-child(3) {
+				top: 6.98rem!important
+			}
+			.m-page.pageFour>img.person {
+				top: 1.36rem!important;
+			}
+			.m-page.pageFour #page4text{
+				top:4.7rem!important;
+				height:32%!important;
+			}
+			.m-page .doSth {
+				bottom: .38rem!important;
+			}
+		}
+	</style>
+</head>
+<body style="background:#e64439;">
+	<div class="u-loading">
+		<div class="spinner">
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
+	</div>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="m-page pageOne swiper-slide">
+				<img src="/h5static/first/img/person1.png" alt="" class="person animated" data-amt="trans2up">
+				<img src="/h5static/first/img/page1-1.png" alt="" style="width: 4.72rem;top:12.2rem;left:1.18rem;transform: translate(-50%,30%);-webkit-transform: translate(-50%,30%);visibility:hidden;" data-amt="trans2rt" class="animated">
+				<img src="/h5static/first/img/page1-2.png" alt="" style="width: 4.613rem;top:12.28rem;left:5.46rem;transform: translate(50%,30%);-webkit-transform: translate(50%,30%);visibility:hidden;" data-amt="trans2lf" class="animated">
+				<img src="/h5static/first/img/page-bg.png" alt="" class="u-bg">
+				<img src="/h5static/first/img/page1-3.png" alt="" class="text1 animated" data-amt="rot2rt">
+				<img src="/h5static/first/img/page1-4.png" alt="" class="text2 animated" data-amt="rot2lf">
+			</div>
+			<div class="m-page pageTwo swiper-slide">
+				<img src="/h5static/first/img/person2.png" alt="" class="person animated" data-amt="trans2up">
+				<img src="/h5static/first/img/page-bg.png" alt="" class="u-bg">
+				<img src="/h5static/first/img/page2-1.png" alt="" style="width: 8.627rem;top:8.66rem;left:0.66rem;transform: translate(0,-18%);-webkit-transform: translate(0,-18%);" data-amt="trans2dn" class="animated">	
+				<img src="/h5static/first/img/page2-2.png" alt="" class="text1 animated" data-amt="rot2rt">
+				<img src="/h5static/first/img/page2-3.png" alt="" class="text2 animated" data-amt="rot2lf">
+			</div>
+			<div class="m-page pageThree swiper-slide">
+				<img src="/h5static/first/img/page-bg.png" alt="" class="u-bg">
+				<img src="/h5static/first/img/person3.png" alt="" class="person animated" data-amt="trans2dn">
+				<img src="/h5static/first/img/page3-2.png" alt="" style="width: 0.587rem;top:8.28rem;left:6.14rem;transform: scale(0,0);-webkit-transform: scale(0,0);" data-amt="zoomLoop" class="animated">	
+				<img src="/h5static/first/img/page3-3.png" alt="" class="text1 animated" data-amt="rot2rt">
+				<img src="/h5static/first/img/page3-4.png" alt="" class="text2 animated" data-amt="rot2lf">
+			</div>
+			<div class="m-page pageFour swiper-slide">
+				<img src="/h5static/first/img/page4-bg.jpg" alt="" class="u-bg">
+				<img src="/h5static/first/img/person4.png" alt="" class="person animated" data-amt="trans2dn">
+				<img src="/h5static/first/img/page4-1.png" alt="" style="width: 3.08rem;top:2.46rem;left:6.54rem;transform: translate(-30%,0);-webkit-transform: translate(-30%,0);transform: rotate(-10deg);-webkit-transform: rotate(-10deg);visibility: hidden;" data-amt="trans2rt" class="animated">	
+				<img src="/h5static/first/img/page4-22.png" alt="" style="width: 100%;top:5.1rem;left:0;transform: scale(0,0);-webkit-transform: scale(0,0);" data-amt="zoomOut" class="animated" id="page4text">
+				<div class="doSth animated" data-amt="trans2up">
+					<div class="u-btns">
+						<a href="/wechatjr/regist/v1/index.html" id="goRegist"></a>
+						<a href="javascript:;" id="goShare"></a>
+					</div>
+					<div class="u-code">
+						<img src="/h5static/first/img/page4-code.png" alt="" style="width:3.387rem;">
+						<p>扫描下载拿年终</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="arrowDown">
+		<img src="/h5static/first/img/arrowDown.png" alt="" class="animated arrowAmt">
+	</div>
+	<div class="sharePop" style="display:none;">
+		<img src="/h5static/first/img/goShare.png" alt="">
+	</div>
+	<div class="u-music">
+		<audio id="u-audio" autoplay preload loop="loop" src="/h5static/first/img/yAwardMusic.mp3"></audio>
+	</div>
+	<script>
+		var mySwiper = new Swiper('.swiper-container', {
+			direction: 'vertical',
+			autoplay: 0,//可选选项，自动滑动
+			onSlideChangeStart:function(swiper){
+				mySwiper.disableTouchControl();
+			},
+			onSlideChangeEnd:function(swiper){
+				addAmt();
+			}
+		});
+		//下滑添加动画
+		function addAmt(){
+			var imgAmt = $('.swiper-slide-active').find('.animated'),
+				otherImgamt = $('.swiper-slide-active').siblings().find('.animated');
+			for(var i = 0;i<imgAmt.length;i++){
+				imgAmt.eq(i).attr('data-amt');//获取动画名
+				imgAmt.eq(i).addClass(imgAmt.eq(i).attr('data-amt'));
+			}
+			otherImgamt.each(function(){
+				$(this).removeClass($(this).attr('data-amt'));
+			});
+			if(mySwiper.activeIndex==3){//最后一张，隐藏箭头
+				$('.arrowDown').hide();
+			}else{
+				$('.arrowDown').show();
+			}
+			mySwiper.enableTouchControl();
+		};
+
+		window.onload = function(){//确保图片加载完成
+			//channelVisit();
+			$('.u-loading').remove();
+			addAmt();
+			//自动播放音乐
+			function audioAutoPlay(id){
+			    var audio = document.getElementById(id);
+			    audio.play();
+			    document.addEventListener("WeixinJSBridgeReady", function () {
+			            audio.play();
+			    }, false);
+			}
+			audioAutoPlay('u-audio');
+			//音乐播放按钮
+			$('.u-music').on('click',function(){
+				if($(this).hasClass('f-pause')){
+					$(this).removeClass('f-pause');
+					document.getElementById('u-audio').play();
+				}else{
+					$(this).addClass('f-pause');
+					document.getElementById('u-audio').pause();
+				}
+			});
+			$('#goShare').on('click',function(){
+				$('.sharePop').show();
+			});
+			$('.sharePop').on('click',function(){
+				$(this).hide();
+			});
+		};
+	</script>
+</body>
+</html>

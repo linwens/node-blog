@@ -1,0 +1,39 @@
+/*reset*/
+body,textarea,input,button,select,keygen,legend{ font: 14px/1.5 "Microsoft YaHei",arial,"Open Sans","Hiragino Sans GB","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif,tahoma,"Hiragino Sans GB";color:#333;background:#fff;}
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;outline:none;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;overflow:hidden;word-break:break-all;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+ul,li{list-style:none;}
+small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+html,body{height: 100%;background: #FAFAFA;}
+/*function*/
+.f-ofh {overflow:hidden;}
+.f-wsn{white-space:nowrap;}
+.f-hide{display:none;}
+.f-db{display:block;}
+.f-inb{display:inline-block;}
+.f-pr{position:relative;}
+.f-pa{position:absolute;}
+.f-fl{float:left;}
+.f-fr{float:right;}
+.f-cb{clear:both;}
+.f-tl{text-align:left;}
+.f-tr{text-align:right;}
+.f-tc{text-align:center;}
+.f-vm{vertical-align: middle;}
+.f-fs14{font-size:14px;}
+.f-fs20{font-size:20px;}
+.f-cf, .clearfix{zoom:1;}
+.f-cf:after,.clearfix:after{content: ".";display: block;height: 0;clear: both; visibility: hidden; font-size: 0;}
+.f-tof{white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}

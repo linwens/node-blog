@@ -30,4 +30,4 @@ Utils.prototype.timeFormat = function(val, type){
 	}
 	return str;
 };
-window.Utils = new Utils();
+window.Utils = new Utils(); 
